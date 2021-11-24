@@ -19,6 +19,8 @@ public class WayPointActorDer : MonoBehaviour
     public GameObject cajaEntregada2;
     public GameObject cajaEntregada3;
     
+
+    bool regreso = false;
     // Start is called before the first frame update
     void Start()
     {

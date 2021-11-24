@@ -12,6 +12,13 @@ TagManager:
   - WaypointIzq
   - WaypointArr
   - Waypointaba
+  - addCajaa
+  - addCaja
+  - addCaja1
+  - addCaja2
+  - elimCajas
+  - inicio
+  - final
   layers:
   - Default
   - TransparentFX

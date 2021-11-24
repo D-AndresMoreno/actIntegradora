@@ -8,6 +8,10 @@ TagManager:
   - road
   - Shelf
   - Box
+  - WaypointDer
+  - WaypointIzq
+  - WaypointArr
+  - Waypointaba
   layers:
   - Default
   - TransparentFX

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WayPointActorDer : MonoBehaviour
 {
-    float speed = 2.5f;
+    float speed = 5f;
     public Transform target;
     public GameObject caja1;
     public GameObject cajaEstante1;
@@ -21,6 +21,7 @@ public class WayPointActorDer : MonoBehaviour
     
 
     bool regreso = false;
+    bool firstLoop = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,20 +36,30 @@ public class WayPointActorDer : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(new Vector3(speed*Time.deltaTime,0,0));
+        if(firstLoop){
+            transform.Translate(new Vector3(speed*Time.deltaTime,0,0));
+        }else{
+            transform.Translate(new Vector3((2.5f*Time.deltaTime),0,0));
+        }
     }
 
     void OnTriggerEnter(Collider other){
-        if(other.tag == "WaypointIzq"){
+        if(other.tag == "WaypointIzq" && !regreso){
             transform.LookAt(new Vector3(-60,0,0));
-            
-        }else if(other.tag == "WaypointDer"){
+        }else if(other.tag == "WaypointDer"&& !regreso){
             transform.LookAt(new Vector3(180,0,0));
-        }else if(other.tag == "WaypointArr"){
+        }else if(other.tag == "WaypointArr"&& !regreso){
             transform.LookAt(new Vector3(0,0,300));
             transform.Translate(new Vector3(speed*Time.deltaTime*-1,0,0));
-        }else if(other.tag == "Waypointaba"){
+        }else if(other.tag == "Waypointaba"&& !regreso){
             transform.LookAt(new Vector3(0,0,-300));
+        }else if(other.tag == "final"){
+            transform.LookAt(new Vector3(100,0,-300));
+            regreso = true;
+        }else if(other.tag == "inicio"){
+            transform.LookAt(new Vector3(-260,0,0));
+            regreso = false;     
+            firstLoop = false;
         }
 
 
@@ -70,8 +81,12 @@ public class WayPointActorDer : MonoBehaviour
             cajaEntregada1.GetComponent<Renderer>().enabled = true;
             cajaEntregada2.GetComponent<Renderer>().enabled = true;
             cajaEntregada3.GetComponent<Renderer>().enabled = true;
+        }
+    }
 
-            
+    void EvitaCoallision(Collider robot){
+       if(robot.tag == "robot" ){
+            transform.Translate(new Vector3(0,0,0));
         }
     }
 }
